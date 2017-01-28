@@ -1,0 +1,3 @@
+if filereadable(glob("~/.mysettings/vim/xg.vimrc"))
+	source ~/.mysettings/vim/xg.vimrc
+endif

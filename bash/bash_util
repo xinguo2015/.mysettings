@@ -1,0 +1,91 @@
+# 简短提示符
+PS1='XG\$ '
+
+# aliases
+alias ll='ls -lF'
+alias la='ls -A'
+alias l='ls -CF'
+alias h='history'
+alias vimr='vim -R'
+alias unzip='unzip -O CP936'
+alias openpdf='evince'
+alias openpic='eog'
+alias opendir='nautilus'
+alias opendoc='libreoffice'
+alias rmbuild='rm -rf ../build/*'
+alias wgetc='wget -c -t 0'
+
+# ctags
+alias ctags='ctags -R --c++-kinds=+p --fields=+iaS --extra=+q'
+
+# colored GCC warnings and errors
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# log utilities function
+
+logfile=`realpath ~/.working.log`
+
+#  logadd 
+logadd() 
+{
+	echo $* >> $logfile
+}
+
+#  lognew 
+lognew() 
+{
+	echo "" >> $logfile # new line
+	echo "	" `date` >> $logfile
+	echo "" >> $logfile # new line
+	logadd $*
+}
+
+logvim()
+{
+	vim $logfile
+}
+
+logcat()
+{
+	cat $logfile
+}
+
+# archives
+# extrac files from .tgz
+untgz()
+{
+	tar -zxvf $*
+}
+
+# extract files from .tar
+untar()
+{
+	tar -xvf $*
+}
+
+# mount iso, open folder
+openiso()
+{
+	isofile=$(pwd)/$1
+	if [ -f $(isofile) ]; then
+		mountpoint=~/Documents/$1
+		sudo mkdir -p "$mountpoint"
+		sudo mount -o loop "$isofile" "$mountpoint"
+		sudo -K
+		nautilus "$mountpoint"
+	fi
+}
+
+# colors
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
