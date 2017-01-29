@@ -1,0 +1,11 @@
+# private bin directories
+PATH="$HOME/bin:$HOME/.local/bin:$PATH"; export PATH
+
+# texlive
+PATH=/usr/local/texlive/2016/bin/x86_64-linux:$PATH; export PATH 
+MANPATH=/usr/local/texlive/2016/texmf-dist/doc/man:$MANPATH; export MANPATH 
+INFOPATH=/usr/local/texlive/2016/texmf-dist/doc/info:$INFOPATH; export INFOPATH
+
+# cuda 8
+PATH=/usr/local/cuda-8.0/bin:$PATH; export PATH 
+LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH; export LD_LIBRARY_PATH

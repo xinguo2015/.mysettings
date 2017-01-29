@@ -1,5 +1,6 @@
 
-sudo apt-get install vim-gnome python-dev python3-dev
+sudo apt-get install vim-gnome 
+sudo apt-get install python-dev python3-dev
 sudo apt-get install cmake git 
 
 
@@ -11,7 +12,13 @@ UUID=2d6b6ffe-ff65-4d93-8110-29c9f80be730 /home/oldhome   ext4    defaults      
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 # 安装youcompleteme
-	安装Vundle，然后在vim中运行PluginList检查是否添加了youcompleteme
+    需要先安装 git，cmake，python-dev，python3-dev
+	需要先安装Vundle，然后在vim中运行PluginList检查是否添加了youcompleteme
 	如果添加了，那么:PluginInstall(下载和安装ycm)
 	终端上运行 install.py --clang-completer
+
+# 安装 texlive
+	下载iso，mount
+	sudo ./install-tl
+	安装之后，设置路径
 

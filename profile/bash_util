@@ -1,6 +1,3 @@
-# 简短提示符
-PS1='XG\$ '
-
 # aliases
 alias ll='ls -lF'
 alias la='ls -A'
@@ -66,11 +63,11 @@ untar()
 # mount iso, open folder
 openiso()
 {
-	isofile=$(pwd)/$1
-	if [ -f $(isofile) ]; then
-		mountpoint=~/Documents/$1
+	thefile=$(pwd)/$1
+	if [ -f $thefile ]; then
+		mountpoint=~/.isomount/$1
 		sudo mkdir -p "$mountpoint"
-		sudo mount -o loop "$isofile" "$mountpoint"
+		sudo mount -o loop "$thefile" "$mountpoint"
 		sudo -K
 		nautilus "$mountpoint"
 	fi
@@ -88,4 +85,27 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
+# 彩色提示符
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]XG@\h\[\033[00m\]\[\033[00m\]\$ '
+# 无色彩提示符
+# PS1='${debian_chroot:+($debian_chroot)}XG@\h\$ '
+ 
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
+
+
+# change to working space
+if [ $(pwd) == $HOME ]; then
+	cd workspace
+fi
+
+# display current folder
+pwd
 
