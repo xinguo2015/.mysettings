@@ -32,9 +32,11 @@ au BufWrite /private/etc/pw.* set nowritebackup nobackup
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 " vundle managed plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
+if filereadable(glob("~/.vim/bundle/Vundle.vim"))
 if filereadable(glob("~/.mysettings/vim/vundle.vimrc"))
 	filetype off   " required
 	source ~/.mysettings/vim/vundle.vimrc
+endif
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
