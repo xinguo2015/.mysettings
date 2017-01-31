@@ -1,0 +1,22 @@
+# 安装Display dirver
+  注意不要让 自动登录，否则stop x service时会有麻烦
+  如果不能stop x service, 按Alt+Ctrl+F7，登录出来
+  （如果时黑屏，按Enter，按提示进入console)
+1. 在/etc/modprobe.d/中增加一个文件blacklist-nouveau.conf，内容如下：
+
+blacklist nouveau
+options nouveau modeset=0
+
+2. reboot。在reboot选项，按e，在后面添加 3 nomodeset，按F10并启动
+
+3. 开始安装
+按Ctrl+Alt+F1进入命令行模式，关闭图形系统
+$sudo service lightdm stop
+
+sudo <NVIDIA driver run file>
+
+自动运行nvidia-xconfig
+
+reboot
+
+
