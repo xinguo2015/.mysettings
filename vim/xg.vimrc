@@ -196,11 +196,12 @@ set laststatus=2 "始终显示状态栏
 "colorscheme slate "good, white bkgd
 "colorscheme peachpuff "good, white bkgd
 colorscheme torte
-colorscheme darkblue
 colorscheme industry "good, black bkgd
 colorscheme desert
 colorscheme zellner
 colorscheme default
+colorscheme darkblue
+hi search ctermbg=darkcyan ctermfg=white
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
