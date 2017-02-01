@@ -4,11 +4,13 @@ function tarHome()
 {
 	sudo tar zcvpf $1 \
 		--exclude=/home/xinguo/.cache \
-		--exclude=/home/xinguo/Downloads \
-		--exclude=/home/xinguo/Samples \
+		--exclude=/home/xinguo/.nv \
 		--exclude=/home/xinguo/Videos \
 		--exclude=/home/xinguo/Pictures \
 		--exclude=/home/xinguo/Music \
+		--exclude=/home/xinguo/Downloads \
+		--exclude=/home/xinguo/Samples \
+		--exclude=/home/xinguo/temp \
 		/home/xinguo
 }
 

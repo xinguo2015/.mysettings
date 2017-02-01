@@ -1,0 +1,2 @@
+# private bin directories
+PATH="$HOME/bin:$HOME/.local/bin:$PATH"; export PATH

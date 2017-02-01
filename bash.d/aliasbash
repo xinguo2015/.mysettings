@@ -1,0 +1,13 @@
+# bash alias
+alias ll='ls -lF'
+alias la='ls -A'
+alias l='ls -CF'
+alias h='history'
+alias vimr='vim -R'
+alias unzip='unzip -O CP936'
+alias openpdf='evince'
+alias openpic='eog'
+alias opendir='nautilus'
+alias opendoc='libreoffice'
+alias rmbuild='rm -rf ../build/*'
+alias wgetc='wget -c -t 0'
