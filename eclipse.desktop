@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Eclipse
+Type=Application
+Exec=/home/xinguo/eclipse/eclipse
+Terminal=false
+Icon=/home/xinguo/eclipse/icon.xpm
+Comment=Integrated Development Environment
+NoDisplay=false
+Categories=Development;IDE;
+Name[en]=Eclipse

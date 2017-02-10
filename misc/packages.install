@@ -1,7 +1,13 @@
 
-sudo apt-get install vim-gnome 
+sudo apt-get install vim-gnome-py2 
+sudo apt-get install vim-scripts vim-addons
 sudo apt-get install python-dev python3-dev
 sudo apt-get install cmake git 
+sudo apt-get install java-8-jdk
+###
+sudo apt install python-pip
+pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose
+
 
 
 # mount a parition at start
