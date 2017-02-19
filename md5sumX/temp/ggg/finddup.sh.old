@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# parameter [.md5list.merge]
+
+if [ $# -ge 1 ]; then
+	dbMerge=$(realpath $1)
+else
+	dbMerge=$(pwd)/.md5list.merge
+fi
+
+if [ ! -f "$dbMerge" ] || [ ! -r "$dbMerge" ]; then
+	echo "invalid file"
+	exit
+fi
+
+# 整体排序
+dbSort=`mktemp`
+sort "$dbMerge" > "$dbSort"
+# 提取md5字段，并统计重复次数, 写入文件
+duplist=`mktemp`
+cut -d " "  -f 1 "$dbSort" | uniq -c | awk '$1>1 { print $2, $1}' > "$duplist" 
+# 关联源文件
+join "$duplist" "$dbSort" > "${dbMerge}.dup"
+rm -rf "$dbSort"
+rm -rf "$duplist"
+cat "${dbMerge}.dup" | while read mm cc ss dd tt ff
+do
+	[ -z dupcount ] && dupcount=0
+	if [ "$mm" = "$mmold" ]; then
+		((++dupcount))
+	else
+		dupcount=0
+		mmold=$mm
+	fi
+	echo $mm $cc $dupcount $ss $dd $tt $ff
+done

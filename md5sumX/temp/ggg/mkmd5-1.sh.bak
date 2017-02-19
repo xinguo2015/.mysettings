@@ -1,0 +1,84 @@
+#!/bin/bash
+
+MDS=md5sum
+
+# get the working dir
+if [ $# -lt 2 ]; then
+	echo "usage: dir reuseflag"
+	exit
+fi
+wdir=$(realpath "$1")
+if [ ! -d "$wdir" ] || [ ! -x "$wdir" ]; then
+	echo not a dir: $wdir
+	exit
+fi
+# get reusing flag
+reuseFlag=$2
+if [ $reuseFlag != yes ]; then
+	reuseFlag=no
+fi
+# file name of the md5 list
+mdf=$wdir/.md5list
+mdfold=$mdf.old
+mdftmp=$mdf.tmp
+
+# if alread exists, rename with .old
+if [ -f "$mdf" ]; then
+	mv "$mdf" "$mdfold"
+fi
+
+# confirm reuse
+if [ ! -f "$mdfold" ]; then
+	reuseFlag=no
+fi
+
+# 遍历目录下的所有文件,  排除 .md5list*
+find "$wdir" -maxdepth 1 -type f -not -name ".md5list*" | while read f
+do
+	if [ -r "$f" ]; then
+		theMDSItem="0"
+		export theMDSItem
+		if [ $reuseFlag = yes ]; then
+			# echo try to find existing mds item
+			# file information: size date time
+			finfo=$(stat -c "%s %y" "$f")
+			finfo=${finfo%%.*}
+			fbname=$(basename "$f")
+			# file size
+			fss=$(echo $finfo | cut -d ' ' -f 1)
+			#if [ $fss -lt 100000000 ]; then
+				# 文件小于100MB
+			#	return 0
+			#fi
+			grep -E "$finfo .*/$fbname$" "$mdfold" | while read rmm rss rdd rtt rff
+			do
+				theMDSItem="$rmm $f"
+				echo "found item old" $theMDSItem
+				break;
+			done
+			echo "after grep" $theMDSItem
+		fi
+		# echo "if not found, then run md5sum"
+		if [ $theMDSItem = "0" ]; then
+			echo "run $MDS $f"
+			echo "$rmm $f"
+			echo "run $MDS $f"
+			theMDSItem=$($MDS "$f")
+		fi
+		# echo "save the mds into file
+		echo $theMDSItem
+		echo $theMDSItem >> "$mdf"
+	fi
+done
+# 添加大小和时间信息
+rm -f "$mdftmp"
+cat "$mdf" | while read rmm rff
+do
+	finfo=$(stat -c "%s %y" "$rff")
+	finfo=${finfo%%.*}
+	echo $rmm $finfo $rff >> "$mdftmp"
+done
+
+# 排序md5 
+sort "$mdftmp" > "$mdf"
+rm -f "$mdftmp"

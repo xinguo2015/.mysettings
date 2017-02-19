@@ -24,6 +24,7 @@ function tarOS()
 {
 	sudo tar zcvpf $1 \
 		--exclude=/boot \
+		--exclude=/data \
 		--exclude=/home \
 		--exclude=/proc \
 		--exclude=/sys \
