@@ -1,0 +1,45 @@
+sudo apt install fcitx-googlepinyin 
+sudo apt install axel
+sudo apt install freeglut-dev
+sudo apt install cmake
+sudo apt install git
+sudo apt install xclip
+sudo apt install exuberant-ctags 
+sudo apt install vim-gnome
+sudo apt install vim-scripts 
+vim-addon-manager install taglist
+sudo apt install openjdk-9-jre
+
+========================================
+nvidia显卡驱动安装
+------------------------------
+1. 关闭nouveau驱动
+   建立一个文件 /etc/modprobe.d/disable-nouveau.conf，内容如下：
+
+blacklist nouveau
+options nouveau modeset=0
+------------------------------
+2. 更新iniramfs
+sudo update-initramfs -u
+------------------------------
+3. 重新启动
+4. 终端登录：ctrl+alt+F1
+5. 运行：sudo service lightdm stop
+6. 关闭x-server: sudo killall Xorg
+7. sudo ./nvidia-driver.run (允许update configure)
+8. 重新启动
+========================================
+
+========================================
+安装windows字体
+------------------------------
+sudo cp /mnt/WIN10/Windows/Fonts/* /usr/share/fonts/WindowsFonts
+sudo fc-cache
+========================================
+
+========================================
+========================================
+========================================
+========================================
+========================================
+========================================
