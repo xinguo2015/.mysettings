@@ -13,9 +13,10 @@ Plugin 'VundleVim/Vundle.vim'
 " plugin on GitHub repo
 "Plugin 'tpope/vim-fugitive'
 Plugin 'Valloric/YouCompleteMe'
-
+"Markdown preview
+Plugin 'iamcco/mathjax-support-for-mkdp'
+Plugin 'iamcco/markdown-preview.vim'
 " plugin from http://vim-scripts.org/vim/scripts.html
-Plugin 'TagList'
 
 " Git plugin not hosted on GitHub
 "Plugin 'git://git.wincent.com/command-t.git'

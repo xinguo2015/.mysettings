@@ -12,6 +12,7 @@ alias opendoc='libreoffice'
 alias rmbuild='rm -rf ../build/*'
 alias wgetc='wget -c -t 0'
 alias closedisplay='xset dpms force off'
+alias cdopt='cd /home/external/opt'
 # ctags
 alias ctags='ctags -R --c++-kinds=+p --fields=+iaS --extra=+q'
 # colored GCC warnings and errors
